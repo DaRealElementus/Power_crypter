@@ -12,8 +12,10 @@ init(autoreset=True)
 
 @atexit.register
 def stop_pressed():
-  os.system("CLS")
-  print("Woah there, use the quit command next time ;)")
+  if quit == False:
+    exec(open('quit.py').read())
+  else:
+    pass
 
 def Decrypt(phrase, key):
   key = str(key)
