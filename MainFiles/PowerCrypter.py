@@ -29,7 +29,12 @@ def Decrypt(phrase, key, debug):
   count = 0
   newphrase = ""
   for character in phrase:
-    letter = ord(character) - int(curkey[count])
+    letter = ord(character)
+    if letter == 53384:
+      character = 127
+    else:
+      pass
+    letter -= int(curkey[count])
     new = chr(letter)
     newphrase += new
     if debug == True:
@@ -45,6 +50,10 @@ def Encrypt(phrase, key, debug):
   newphrase = ""
   for character in phrase:
     letter = ord(character) + int(curkey[count])
+    if letter == 127:
+      letter = 53384
+    else:
+      pass
     new = chr(letter)
     newphrase += new
     if debug == True:
@@ -121,8 +130,6 @@ def main():
           print(f"{Fore.RED}Error: Resetting phrase to default")
           key = "12345"
           phrase = "Lnqlt!\qwoh"
-      else:
-        break
       if DoKey == True:
         key = input("Input Key: ")
         if key == "":
