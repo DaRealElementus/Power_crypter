@@ -7,6 +7,8 @@ also avaliable on [Replit](https://replit.com/@ItsmeElementus/PowerCrypter?v=1)
 # Supported Versions
 Windows 10<br>
 Windows 11 (limited)<br>
+Linux (limited)<br>
+Mac (limited)<br>
 
 # Required modules
 You must have python installed on your machine (duh), 3.12.0 or greater does not work at the moment<br>

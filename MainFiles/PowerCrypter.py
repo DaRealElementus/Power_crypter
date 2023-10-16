@@ -1,7 +1,6 @@
 import random
 import os
 from colorama import Fore, init
-import win32api
 import subprocess
 import sys
 import time
@@ -159,15 +158,23 @@ def main():
         exit()
     except:
       print(Fore.RED + "Woah, something funky happened, lets try that again")
-
-if  str(version) in win11list:
-  print(f"{Fore.red}You are using Windows 11, some features are bugged due to outdated API")
-elif str(version) in win10list:
-  win32api.SetConsoleCtrlHandler(stop_pressed, True)
+if platform.system() == "Windows":
+  import win32api
+  if  str(version) in win11list:
+    print(f"{Fore.RED}You are using Windows 11, some features are bugged due to outdated API")
+  elif str(version) in win10list:
+    win32api.SetConsoleCtrlHandler(stop_pressed, True)
+  else:
+    print(f"{Fore.RED}Your version is not supported by PowerCrypter, see Comaptible versions on GitHub")
+    useless = input("Press Enter to continue: ")
+    exit()
+elif platform.system() == "Darwin":
+  print(f"{Fore.RED}You are a mac user, some features may not work")
+elif platform.system() == "Linux":
+  print(f"{Fore.RED}You are a linux user, some features may not work")
 else:
   print(f"{Fore.RED}Your version is not supported by PowerCrypter, see Comaptible versions on GitHub")
   useless = input("Press Enter to continue: ")
   exit()
-
 main()
 
