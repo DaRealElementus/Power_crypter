@@ -1,9 +1,14 @@
-<span style="color:red">Due to unrestricted ASCII code, data loss may happen</span>.
+<span style="color:red">PowerCrypter isn't perfect, its security lies in the total number of combonations, Due to this there could be some data loss, however it is minimal</span>
 # Power_crypter
 Funky python Vigenère cypher (but dumb)
 also avaliable on [Replit](https://replit.com/@ItsmeElementus/PowerCrypter?v=1)
 
+# Supported Versions
+Windows 10<br>
+Windows 11 (limited)<br>
+
 # Required modules
+You must have python installed on your machine. (duh)
 colorama - installed with pip through cmd - C:\>``` pip install colorama ```
 ensure that you have setup pip before installing
 

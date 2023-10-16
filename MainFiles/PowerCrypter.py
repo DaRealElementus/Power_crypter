@@ -1,12 +1,17 @@
 import random
 import os
 from colorama import Fore, init
-import atexit
+import win32api
 import subprocess
 import sys
 import time
+import platform
 os.system("CLS")
 
+win10list = ["10240","10586","14393","15063","16299","17134","17763","18362","18363","19041","19042","19043","19044","19045"]
+win11list = ["22000", "22621"]
+
+version = platform.version().split('.')[2]
 debug = False
 DoKey = True
 quit = False
@@ -14,7 +19,8 @@ init(autoreset=True)
 
 '''Dont steal this, I worked really hard on it - @ItsmeElementus'''
 
-def stop_pressed():
+
+def stop_pressed(sig, func=None):
   try:
     if quit == False:
       print("Executing quit.py")
@@ -22,6 +28,7 @@ def stop_pressed():
       time.sleep(1)
   except Exception as e:
     print(f"Error executing quitting.py: {e}")
+  
 
 def Decrypt(phrase, key, debug):
   key = str(key)
@@ -29,12 +36,7 @@ def Decrypt(phrase, key, debug):
   count = 0
   newphrase = ""
   for character in phrase:
-    letter = ord(character)
-    if letter == 53384:
-      character = 127
-    else:
-      pass
-    letter -= int(curkey[count])
+    letter = ord(character) - int(curkey[count])
     new = chr(letter)
     newphrase += new
     if debug == True:
@@ -50,10 +52,6 @@ def Encrypt(phrase, key, debug):
   newphrase = ""
   for character in phrase:
     letter = ord(character) + int(curkey[count])
-    if letter == 127:
-      letter = 53384
-    else:
-      pass
     new = chr(letter)
     newphrase += new
     if debug == True:
@@ -75,7 +73,7 @@ def main():
     f"Try these commands:{Fore.YELLOW} E, D, quit, help, explain, reset"
     )
   print(
-    f"Ver: {Fore.CYAN}1.8"
+    f"Ver: {Fore.CYAN}1.9"
     )
   while True:
     try:
@@ -105,7 +103,7 @@ def main():
           print(f"{Fore.YELLOW}|   |   |   |   |")
           print(f"{Fore.YELLOW}I   g   o   p   t")
           print("and that is how this system works, enjoy!")
-          print("Data loss is caused when UTF-8 Characters are shuffled into key presses, I have limited the instances where this can occur")
+          print("Data loss is caused when UTF-8 Characters are shuffled into key presses, eg 127 = DEL key. I hate this and wish it to dissapear but it is nessecary for I.T. to work")
         elif EorD == "RESET":
           os.system("CLS")
         elif EorD == "DEBUG.UNPACK":
@@ -158,12 +156,18 @@ def main():
       print("")
       print(Fore.RED + "Saved from a Error, Try Ctrl+Shift+C next time \nIf you want to quit, type 'quit'")
     except SystemExit:
-        stop_pressed()
         exit()
     except:
       print(Fore.RED + "Woah, something funky happened, lets try that again")
-atexit.register(stop_pressed)
-if __name__ == "__main__":
-    main()
 
+if  str(version) in win11list:
+  print(f"{Fore.red}You are using Windows 11, some features are bugged due to outdated API")
+elif str(version) in win10list:
+  win32api.SetConsoleCtrlHandler(stop_pressed, True)
+else:
+  print(f"{Fore.RED}Your version is not supported by PowerCrypter, see Comaptible versions on GitHub")
+  useless = input("Press Enter to continue: ")
+  exit()
+
+main()
 
