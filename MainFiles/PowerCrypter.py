@@ -5,7 +5,10 @@ import subprocess
 import sys
 import time
 import platform
-os.system("CLS")
+if platform.platform() == "Darwin":
+  os.system("clear")
+else:
+  os.system("CLS")
 
 win10list = ["10240","10586","14393","15063","16299","17134","17763","18362","18363","19041","19042","19043","19044","19045"]
 win11list = ["22000", "22621"]
@@ -104,7 +107,10 @@ def main():
           print("and that is how this system works, enjoy!")
           print("Data loss is caused when UTF-8 Characters are shuffled into key presses, eg 127 = DEL key. I hate this and wish it to dissapear but it is nessecary for I.T. to work")
         elif EorD == "RESET":
-          os.system("CLS")
+          if platform.platform() == "Darwin":
+            os.system("clear")
+          else:
+            os.system("CLS")
         elif EorD == "DEBUG.UNPACK":
           debug = True
           print(f"toggled debug: {str(debug).upper()}")
@@ -115,7 +121,10 @@ def main():
         else:
           print(f"{Fore.RED}Error: Not a recognized command")
       if quit:
-        os.system('CLS')
+        if platform.platform() == "Darwin":
+          os.system("clear")
+        else:
+          os.system("CLS")
         break
       phrase = input("Input Phrase (Limited to 100000 characters): ")
       if phrase == "":
@@ -163,9 +172,10 @@ if platform.system() == "Windows":
   if  str(version) in win11list:
     print(f"{Fore.RED}You are using Windows 11, some features are bugged due to outdated API")
   elif str(version) in win10list:
+    import win32api
     win32api.SetConsoleCtrlHandler(stop_pressed, True)
   else:
-    print(f"{Fore.RED}Your version is not supported by PowerCrypter, see Comaptible versions on GitHub")
+    print(f"{Fore.RED}Your Windows version is not supported by PowerCrypter, see Comaptible versions on GitHub")
     useless = input("Press Enter to continue: ")
     exit()
 elif platform.system() == "Darwin":
@@ -173,7 +183,7 @@ elif platform.system() == "Darwin":
 elif platform.system() == "Linux":
   print(f"{Fore.RED}You are a linux user, some features may not work")
 else:
-  print(f"{Fore.RED}Your version is not supported by PowerCrypter, see Comaptible versions on GitHub")
+  print(f"{Fore.RED}Your OS is not supported by PowerCrypter, see Comaptible versions on GitHub")
   useless = input("Press Enter to continue: ")
   exit()
 main()
