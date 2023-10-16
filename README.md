@@ -1,3 +1,4 @@
+<span style="color:red">Due to unrestricted ASCII code, data loss may happen</span>.
 # Power_crypter
 Funky python Vigenère cypher (but dumb)
 also avaliable on [Replit](https://replit.com/@ItsmeElementus/PowerCrypter?v=1)
