@@ -9,7 +9,7 @@ Windows 10<br>
 Windows 11 (limited)<br>
 
 # Required modules
-You must have python installed on your machine. (duh)<br>
+You must have python installed on your machine (duh), 3.12.0 or greater does not work at the moment<br>
 colorama - installed with pip through cmd - C:\>``` pip install colorama ```<br>
 ensure that you have setup pip before installing<br>
 
