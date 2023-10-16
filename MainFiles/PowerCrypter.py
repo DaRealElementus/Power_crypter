@@ -105,7 +105,7 @@ def main():
           print(f"{Fore.YELLOW}|   |   |   |   |")
           print(f"{Fore.YELLOW}I   g   o   p   t")
           print("and that is how this system works, enjoy!")
-          print("Data loss is caused when UTF-8 Characters are shuffled into key presses, eg 127 = DEL key. I hate this and wish it to dissapear but it is nessecary for I.T. to work")
+          print("Data loss is caused when UTF-8 Characters are shuffled into key presses, I have limited the instances where this can occur")
         elif EorD == "RESET":
           os.system("CLS")
         elif EorD == "DEBUG.UNPACK":
@@ -162,7 +162,8 @@ def main():
         exit()
     except:
       print(Fore.RED + "Woah, something funky happened, lets try that again")
+atexit.register(stop_pressed)
 if __name__ == "__main__":
     main()
 
-atexit.register(stop_pressed)
+
