@@ -4,6 +4,7 @@ from colorama import Fore, init
 import subprocess
 import sys
 import time
+import atexit
 import platform
 if platform.system() == "Darwin":
   os.system("clear")
@@ -22,11 +23,11 @@ init(autoreset=True)
 '''Dont steal this, I worked really hard on it - @ItsmeElementus'''
 
 
-def stop_pressed(sig, func=None):
+def stop_pressed():
   try:
     if quit == False:
       print("Executing quit.py")
-      subprocess.call([sys.executable, "quitting.py"])
+      subprocess.call([sys.executable, "MainFiles\\quitting.py"])
       time.sleep(1)
   except Exception as e:
     print(f"Error executing quitting.py: {e}")
@@ -186,5 +187,6 @@ else:
   print(f"{Fore.RED}Your OS is not supported by PowerCrypter, see Comaptible versions on GitHub")
   useless = input("Press Enter to continue: ")
   exit()
+atexit.register(stop_pressed)
 main()
 
