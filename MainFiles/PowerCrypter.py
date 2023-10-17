@@ -5,7 +5,7 @@ import subprocess
 import sys
 import time
 import platform
-if platform.platform() == "Darwin":
+if platform.system() == "Darwin":
   os.system("clear")
 else:
   os.system("CLS")
