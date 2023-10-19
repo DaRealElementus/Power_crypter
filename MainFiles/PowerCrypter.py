@@ -6,6 +6,7 @@ import sys
 import time
 import atexit
 import platform
+
 if platform.system() == "Darwin":
   os.system("clear")
 else:
@@ -31,7 +32,6 @@ def stop_pressed():
       time.sleep(1)
   except Exception as e:
     print(f"Error executing quitting.py: {e}")
-  
 
 def Decrypt(phrase, key, debug):
   key = str(key)
@@ -189,4 +189,3 @@ else:
   exit()
 atexit.register(stop_pressed)
 main()
-
